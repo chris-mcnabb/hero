@@ -1,7 +1,7 @@
 import axios from "axios"
 import './App.css';
 import {useEffect} from "react";
-
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 function App() {
 
     useEffect(async()=>{
@@ -13,9 +13,15 @@ function App() {
        }
     },[])
   return (
-    <div className="App">
-     Admin
-    </div>
+  <Router>
+      <Switch>
+          <Route exact path="/admin">
+              <div>
+                  Hello
+              </div>
+          </Route>
+      </Switch>
+  </Router>
   );
 }
 

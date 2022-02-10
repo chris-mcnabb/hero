@@ -3,9 +3,18 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require("cors");
-
 const app = express();
 
+app.use("/",  express.static(path.join(__dirname, "/client/build")));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+app.use("/admin", express.static(path.join(__dirname, "/admin/build")));
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, '/admin/build', 'index.html'));
+});
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
@@ -15,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.listen(3040, ()=>{
+app.listen(process.env.PORT || 3040, ()=>{
     console.log(`Server is running on 3040`)
 
 })
