@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import axios from "axios"
 import './App.css';
+import {useEffect} from "react";
 
 function App() {
+    useEffect(async()=>{
+        try{
+            const res = await axios.post("http://localhost:3040/", {success: "client"})
+            console.log(res.data)
+        }catch(err){
+
+        }
+    },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      CLIENT
     </div>
   );
 }
